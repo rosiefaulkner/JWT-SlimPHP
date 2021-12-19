@@ -5,11 +5,9 @@ use Slim\Factory\AppFactory;
 use Slim\Psr7\Response;
 
 require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . '/../inc/bootstrap.php';
 
 $app = AppFactory::create();
-
-// Add Routing Middleware
-$app->addRoutingMiddleware();
 
 /*
  * Add Error Handling Middleware
@@ -23,6 +21,20 @@ $app->addRoutingMiddleware();
  * for middleware added after it.
  */
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
+
+/**
+ * Middlewares
+ */
+// Parse json, form data and xml
+$app->addBodyParsingMiddleware();
+$app->addRoutingMiddleware();
+$app->addMiddleware(new \Tuupola\Middleware\JwtAuthentication([
+    "secret" => '123456789123456789000000',
+    "algorithm" => ["HS256", "HS384"]
+]));
+
+// Add Routing Middleware
+$app->addRoutingMiddleware();
 
 // Define app routes
 $app->get('/', function (Request $request, Response $response, $args) {

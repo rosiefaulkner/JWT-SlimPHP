@@ -4,12 +4,14 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit55a775eab306a056651ae59ac51794e9
+class ComposerStaticInitef41732bae8702f0c3b75b636da8a189
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -21,7 +23,10 @@ class ComposerStaticInit55a775eab306a056651ae59ac51794e9
         'S' => 
         array (
             'Symfony\\Polyfill\\Php80\\' => 23,
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Polyfill\\Ctype\\' => 23,
             'Slim\\Psr7\\' => 10,
+            'Slim\\Http\\' => 10,
             'Slim\\' => 5,
         ),
         'P' => 
@@ -30,6 +35,7 @@ class ComposerStaticInit55a775eab306a056651ae59ac51794e9
             'Psr\\Http\\Server\\' => 16,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
+            'PhpOption\\' => 10,
         ),
         'N' => 
         array (
@@ -43,12 +49,17 @@ class ComposerStaticInit55a775eab306a056651ae59ac51794e9
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
+            'GrahamCampbell\\ResultType\\' => 26,
         ),
         'F' => 
         array (
             'Firebase\\JWT\\' => 13,
             'Fig\\Http\\Message\\' => 17,
             'FastRoute\\' => 10,
+        ),
+        'D' => 
+        array (
+            'Dotenv\\' => 7,
         ),
         'A' => 
         array (
@@ -70,9 +81,21 @@ class ComposerStaticInit55a775eab306a056651ae59ac51794e9
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
         ),
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Polyfill\\Ctype\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
+        ),
         'Slim\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/slim/psr7/src',
+        ),
+        'Slim\\Http\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/slim/http/src',
         ),
         'Slim\\' => 
         array (
@@ -89,12 +112,16 @@ class ComposerStaticInit55a775eab306a056651ae59ac51794e9
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-factory/src',
-            1 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
         ),
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'PhpOption\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
         ),
         'Nyholm\\Psr7\\' => 
         array (
@@ -112,6 +139,10 @@ class ComposerStaticInit55a775eab306a056651ae59ac51794e9
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
         ),
+        'GrahamCampbell\\ResultType\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/graham-campbell/result-type/src',
+        ),
         'Firebase\\JWT\\' => 
         array (
             0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
@@ -124,9 +155,13 @@ class ComposerStaticInit55a775eab306a056651ae59ac51794e9
         array (
             0 => __DIR__ . '/..' . '/nikic/fast-route/src',
         ),
+        'Dotenv\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
+        ),
         'App\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src',
+            0 => __DIR__ . '/../..' . '/www',
         ),
     );
 
@@ -141,9 +176,9 @@ class ComposerStaticInit55a775eab306a056651ae59ac51794e9
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit55a775eab306a056651ae59ac51794e9::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit55a775eab306a056651ae59ac51794e9::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit55a775eab306a056651ae59ac51794e9::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitef41732bae8702f0c3b75b636da8a189::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitef41732bae8702f0c3b75b636da8a189::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitef41732bae8702f0c3b75b636da8a189::$classMap;
 
         }, null, ClassLoader::class);
     }
