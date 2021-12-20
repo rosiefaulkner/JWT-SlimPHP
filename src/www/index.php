@@ -4,8 +4,7 @@ use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Slim\Factory\AppFactory;
 use Slim\Psr7\Response;
 
-require __DIR__ . '/../../vendor/autoload.php';
-require __DIR__ . '/../inc/bootstrap.php';
+require __DIR__ . '/vendor/autoload.php';
 
 $app = AppFactory::create();
 
@@ -32,9 +31,6 @@ $app->addMiddleware(new \Tuupola\Middleware\JwtAuthentication([
     "secret" => '123456789123456789000000',
     "algorithm" => ["HS256", "HS384"]
 ]));
-
-// Add Routing Middleware
-$app->addRoutingMiddleware();
 
 // Define app routes
 $app->get('/', function (Request $request, Response $response, $args) {
