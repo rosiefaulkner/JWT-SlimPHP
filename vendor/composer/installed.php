@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '55f09e296951d9827422171958c8a8dcfd47f1ec',
+        'reference' => 'e5ce9cf88a92419ca54f8b0b1c4a6b045569be76',
         'name' => 'rosiefaulkner/wf-api',
         'dev' => true,
     ),
@@ -173,7 +173,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '55f09e296951d9827422171958c8a8dcfd47f1ec',
+            'reference' => 'e5ce9cf88a92419ca54f8b0b1c4a6b045569be76',
             'dev_requirement' => false,
         ),
         'slim/http' => array(

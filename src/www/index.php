@@ -1,10 +1,17 @@
 <?php
+
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Slim\Factory\AppFactory;
 use Slim\Psr7\Response;
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 require('../inc/bootstrap.php');
+
+//Load env
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
+$dotenv->load();
 
 $app = AppFactory::create();
 
@@ -25,26 +32,29 @@ $errorMiddleware = $app->addErrorMiddleware(true, true, true);
  * Middlewares
  */
 // Parse json, form data and xml
+// Define app routes
+$app->add(CorsMiddleware::class);
 $app->addBodyParsingMiddleware();
 $app->addRoutingMiddleware();
-$app->addMiddleware(new \Tuupola\Middleware\JwtAuthentication([
-    "secret" => '123456789123456789000000',
-    "algorithm" => ["HS256", "HS384"]
+$container = $app->getContainer();
+$rawPublicKeys = file_get_contents('https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-odgy7%40wf-api-ccdfe.iam.gserviceaccount.com');
+$keys = json_decode($rawPublicKeys, true);
+$app->add(new \Tuupola\Middleware\JwtAuthentication([
+	"algorithm" => ["HS256"],
+	"header" => "X-Authorization",
+	"secret" => $keys,
+	"secure" => false,
+	"error" => function ($response, $arguments) {
+		$data["status"] = "error";
+		$data["message"] = $arguments["message"];
+		return $response
+			->withHeader("Content-Type", "application/json")
+			->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+	},
+    "callback" => function ($request, $response, $arguments) use ($container) {
+        $container["jwt"] = $arguments["decoded"];
+    }
 ]));
-
-// Define app routes
-$app->get('/', function (Request $request, Response $response, $args) {
-    $response->getBody()->write('Hello world!');
-    return $response;
-});
-
-$app->get('/hello/{name}', function (Request $request, Response $response, $args) {
-    $name=$args['name'];
-    $response->getBody()->write("Hello $name!");
-    return $response;
-});
-
 
 // Run app
 $app->run();
-
