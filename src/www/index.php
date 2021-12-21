@@ -4,7 +4,7 @@ use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Slim\Factory\AppFactory;
 use Slim\Psr7\Response;
 
-require __DIR__ . '/vendor/autoload.php';
+require('../inc/bootstrap.php');
 
 $app = AppFactory::create();
 

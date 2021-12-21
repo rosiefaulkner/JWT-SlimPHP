@@ -7,16 +7,19 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
     header('Access-Control-Max-Age: 86400');    // cache for 1 day
 }
 
-define('ROOT_PATH' , __DIR__ . '/../');
-define('VENDOR_PATH', __DIR__ . '/../vendor/');
+define('ROOT_PATH'  , __DIR__.'../../');
+define('VENDOR_PATH', __DIR__.'/../../vendor/');
 
 // Load Composer
 require VENDOR_PATH.'autoload.php';
 
-//config includes
-require(ROOT_PATH . '../config/config.php');
+// Load each config file
+foreach (glob(ROOT_PATH.'config/*.php') as $configFile) {
+    require $configFile;
+}
 
-// Load functions
-// require(ROOT_PATH.'/inc/functions.php');
-require(ROOT_PATH . '../www/inc/functions.php');
+// Load SPACE functions
+require(ROOT_PATH.'/inc/functions.php');
 
+// Init logging
+//$logger = initLogs($config);
