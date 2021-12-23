@@ -1,9 +1,9 @@
 <?php
 
 header('Access-Control-Allow-Origin: *');
-header('Content-Type: applicatoin/json; charset=UTF-8');
+header('Content-Type: application/json; charset=UTF-8');
 
-include_once $_SERVER['DOCUMENT_ROOT'].'index.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/index.php';
 
 $token = new Api();
 

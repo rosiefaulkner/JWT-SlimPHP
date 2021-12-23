@@ -1,6 +1,5 @@
 <?php
 use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
 use Firebase\JWT\JWT;
 use Slim\Factory\AppFactory;
 
@@ -49,12 +48,22 @@ class Api
 	public function routes()
 	{
 		$app = AppFactory::create();
-		$app->get('/', function (Request $request, Response $response) {
-			$response->getBody()->write(json_encode($this->auth()));
-			return $response
-			->withHeader('Content-Type', 'application/json')
-			->withStatus(200);
-		});
+		if($this->auth()){
+			$app->get('/', function (Response $response) {
+				$response->getBody()->write(json_encode($this->auth()));
+				echo $response
+				->withHeader('Content-Type', 'application/json')
+				->withHeader('Content-Type', 'charset=UTF-8')
+				->withStatus(200);
+			});
+		}else{
+			http_response_code(404);
+			echo json_encode([
+				'type' => 'danger',
+				'title' => 'Failed',
+				'message' => 'Could not create token for this API. Please contact Rosie.'
+			]);
+		}
 	}
 }
 $api = new Api();
