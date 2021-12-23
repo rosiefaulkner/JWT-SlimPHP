@@ -47,12 +47,13 @@ class Api
 	// Define app routes
 	public function routes()
 	{
-		if ($this->auth()) {
+		$authenticated = $this->auth();
+		if ($authenticated) {
 			header('Access-Control-Allow-Origin: *');
 			header('Content-Type: application/json; charset=UTF-8');
 			http_response_code(200);
 			echo json_encode(
-				$this->auth()
+				$authenticated
 			);
 		} else {
 			http_response_code(404);
