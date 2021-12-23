@@ -4,6 +4,7 @@ use Firebase\JWT\JWT;
 use Slim\Factory\AppFactory;
 
 require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+//require $_SERVER['DOCUMENT_ROOT'] . '/phpseclib1.0.19/functions.php';
 class Api
 {
 	//vars
