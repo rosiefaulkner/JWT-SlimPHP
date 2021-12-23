@@ -1,5 +1,5 @@
 <?php
-use Psr\Http\Message\ResponseInterface as Response;
+
 use Firebase\JWT\JWT;
 use Slim\Factory\AppFactory;
 
@@ -11,7 +11,7 @@ class Api
 
 	public function __construct()
 	{
-		$this->auth();
+		$this->routes();
 	}
 	//Define middleware
 	public function middleware()
@@ -47,16 +47,12 @@ class Api
 	// Define app routes
 	public function routes()
 	{
-		$app = AppFactory::create();
-		if($this->auth()){
-			$app->get('/', function (Response $response) {
-				$response->getBody()->write(json_encode($this->auth()));
-				return $response
-				->withHeader('Content-Type', 'application/json')
-				->withHeader('Content-Type', 'charset=UTF-8')
-				->withStatus(200);
-			});
-		}else{
+		if ($this->auth()) {
+			http_response_code(200);
+			echo json_encode(
+				$this->auth()
+			);
+		} else {
 			http_response_code(404);
 			echo json_encode([
 				'type' => 'danger',
