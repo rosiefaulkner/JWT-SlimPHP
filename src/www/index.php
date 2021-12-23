@@ -51,7 +51,7 @@ class Api
 		if($this->auth()){
 			$app->get('/', function (Response $response) {
 				$response->getBody()->write(json_encode($this->auth()));
-				echo $response
+				return $response
 				->withHeader('Content-Type', 'application/json')
 				->withHeader('Content-Type', 'charset=UTF-8')
 				->withStatus(200);
