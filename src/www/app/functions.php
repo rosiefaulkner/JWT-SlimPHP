@@ -19,8 +19,10 @@ class DisplayForm
 						<div class="medium-6 columns">
 						  <label>Select Server
 							<select name="HOSTNAME" id="hostname">
-							  <option value="10.200.18.144">10.200.18.144</option>
-							  <option value="10.200.23.203">10.200.23.203</option>
+							  <option value="???">???</option>
+							  <option value="???">???</option>
+							  <option value="???">???</option>
+							  <option value="???">???</option>
 							</select>
 						  </label>
 						</div>
